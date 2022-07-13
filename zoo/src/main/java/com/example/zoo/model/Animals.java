@@ -3,19 +3,17 @@ package com.example.zoo.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "ANIMALS")
+@Table(name = "animals")
 public class Animals {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @Getter
     @Setter
-    private int id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long animalID;
 
     @Column(name = "NICKNAME")
     @Getter
@@ -34,7 +32,7 @@ public class Animals {
 
     public Animals(int id, String nickname, String species){
         super();
-        this.id = id;
+        this.animalID = id;
         this.nickname = nickname;
         this.species = species;
     }
@@ -44,7 +42,7 @@ public class Animals {
     @Override
     public String toString() {
         return "animals{" +
-                "id=" + id +
+                "id=" + animalID +
                 ", nickname='" + nickname + '\'' +
                 ", species='" + species + '\'' +
                 '}';
